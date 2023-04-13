@@ -51,6 +51,23 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
+void AProyectoVampiroCharacter::ReduceLife_Implementation(float amount)
+{
+}
+
+void AProyectoVampiroCharacter::RestoreLife_Implementation(float amount)
+{
+}
+
+void AProyectoVampiroCharacter::StartDamageOverTime_Implementation(float dps)
+{
+}
+
+void AProyectoVampiroCharacter::StopDamageOverTime_Implementation()
+{
+}
+
+
 //////////////////////////////////////////////////////////////////////////
 // Input
 
@@ -115,12 +132,12 @@ void AProyectoVampiroCharacter::MoveForward(float Value)
 
 void AProyectoVampiroCharacter::MoveRight(float Value)
 {
-	if ( (Controller != nullptr) && (Value != 0.0f) )
+	if ((Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is right
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
-	
+
 		// get right vector 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction

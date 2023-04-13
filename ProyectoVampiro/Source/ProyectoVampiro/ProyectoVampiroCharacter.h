@@ -4,26 +4,47 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "LifeComponent.h"
+#include "Public/LifeManagerInterface.h"
 #include "ProyectoVampiroCharacter.generated.h"
 
-UCLASS(config=Game)
-class AProyectoVampiroCharacter : public ACharacter
+UCLASS(config = Game)
+class AProyectoVampiroCharacter : public ACharacter, public ILifeManagerInterface
 {
 	GENERATED_BODY()
 
-	/** Camera boom positioning the camera behind the character */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
+		/** Camera boom positioning the camera behind the character */
+		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+		class USpringArmComponent* CameraBoom;
 
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* FollowCamera;
+		class UCameraComponent* FollowCamera;
+	/** Life Component */
+	ULifeComponent* _LifeComponent = nullptr;
+
 public:
 	AProyectoVampiroCharacter();
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void ReduceLife(float amount);
+	virtual void ReduceLife_Implementation(float amount) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void RestoreLife(float amount);
+	virtual void RestoreLife_Implementation(float amount) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void StartDamageOverTime(float dps);
+	virtual void StartDamageOverTime_Implementation(float dps) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void StopDamageOverTime();
+	virtual void StopDamageOverTime_Implementation() override;
+
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
-	float TurnRateGamepad;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input)
+		float TurnRateGamepad;
 
 protected:
 
@@ -33,14 +54,14 @@ protected:
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
-	/** 
-	 * Called via input to turn at a given rate. 
+	/**
+	 * Called via input to turn at a given rate.
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void TurnAtRate(float Rate);
 
 	/**
-	 * Called via input to turn look up/down at a given rate. 
+	 * Called via input to turn look up/down at a given rate.
 	 * @param Rate	This is a normalized rate, i.e. 1.0 means 100% of desired turn rate
 	 */
 	void LookUpAtRate(float Rate);
