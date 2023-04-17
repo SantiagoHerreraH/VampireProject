@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "LifeComponent.h"
-#include "Public/LifeManagerInterface.h"
+#include "ProyectoVampiro/Components/LifeComponent.h"
+#include "ProyectoVampiro/Interface/LifeManagerInterface.h"
 #include "ProyectoVampiroCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -21,10 +21,12 @@ class AProyectoVampiroCharacter : public ACharacter, public ILifeManagerInterfac
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FollowCamera;
 	/** Life Component */
-	ULifeComponent* _LifeComponent = nullptr;
 
 public:
 	AProyectoVampiroCharacter();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+		ULifeComponent* m_LifeComponent = nullptr;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void ReduceLife(float amount);

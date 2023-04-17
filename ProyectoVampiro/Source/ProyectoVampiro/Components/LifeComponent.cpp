@@ -1,11 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
-#include "LifeComponent.h"
-
-#include <algorithm>
-
-#include "Engine/Engine.h"
+#include "ProyectoVampiro/Components/LifeComponent.h"
 
 // Sets default values for this component's properties
 ULifeComponent::ULifeComponent()
@@ -40,9 +35,8 @@ void ULifeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 void ULifeComponent::ReduceLife(float amount)
 {
 	this->m_currentLife -= amount;
-	//TODO:: Update widget component here.
 	if (this->m_currentLife <= 0.f) {
-		OnKillEntity.Execute();
+		//OnKillEntity.Execute();
 	}
 }
 
@@ -52,7 +46,6 @@ void ULifeComponent::RestoreLife(float amount)
 	if (this->m_currentLife > this->m_maxLife) {
 		this->m_currentLife = this->m_maxLife;
 	}
-	//TODO:: Update widget component here.
 }
 
 void ULifeComponent::StartDamageOverTime(float dps)

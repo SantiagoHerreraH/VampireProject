@@ -47,24 +47,32 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
+	//Create life component.
+	m_LifeComponent = CreateDefaultSubobject<ULifeComponent>(TEXT("LifeComponent"));
+	m_LifeComponent->m_maxLife = { 100.f };
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
 void AProyectoVampiroCharacter::ReduceLife_Implementation(float amount)
 {
+	this->m_LifeComponent->ReduceLife(amount);
 }
 
 void AProyectoVampiroCharacter::RestoreLife_Implementation(float amount)
 {
+	this->m_LifeComponent->RestoreLife(amount);
 }
 
 void AProyectoVampiroCharacter::StartDamageOverTime_Implementation(float dps)
 {
+	this->m_LifeComponent->StartDamageOverTime(dps);
 }
 
 void AProyectoVampiroCharacter::StopDamageOverTime_Implementation()
 {
+	this->m_LifeComponent->StopDamageOverTime();
 }
 
 
