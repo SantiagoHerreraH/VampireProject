@@ -35,6 +35,7 @@ void ULifeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 void ULifeComponent::ReduceLife(float amount)
 {
 	this->m_currentLife -= amount;
+	UE_LOG(LogTemp, Warning, TEXT("Current life: %f"), this->m_currentLife);
 	if (this->m_currentLife <= 0.f) {
 		//OnKillEntity.Execute();
 	}

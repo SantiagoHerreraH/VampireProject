@@ -13,19 +13,17 @@ class PROYECTOVAMPIRO_API ULifeComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
-		DECLARE_DELEGATE(FKillEntity);
-
-
-
 public:
 	// Sets default values for this component's properties
-	UPROPERTY(BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-		float m_maxLife{ 100.f };
-	UPROPERTY(BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "false"))
+		DECLARE_DELEGATE(FKillEntity);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float m_maxLife{};
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		float m_currentLife{};
-	UPROPERTY(BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-		float m_dps{ 3.f };
-	UPROPERTY(BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float m_dps{};
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool isDamageOverTime{};
 
 	ULifeComponent();
