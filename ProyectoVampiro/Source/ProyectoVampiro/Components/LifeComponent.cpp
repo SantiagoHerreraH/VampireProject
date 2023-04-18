@@ -44,6 +44,8 @@ void ULifeComponent::ReduceLife(float amount)
 void ULifeComponent::RestoreLife(float amount)
 {
 	this->m_currentLife += amount;
+	UE_LOG(LogTemp, Warning, TEXT("Current life: %f"), this->m_currentLife);
+
 	if (this->m_currentLife > this->m_maxLife) {
 		this->m_currentLife = this->m_maxLife;
 	}
