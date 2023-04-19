@@ -49,7 +49,7 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 
 	//Create life component.
 	m_LifeComponent = CreateDefaultSubobject<ULifeComponent>(TEXT("LifeComponent"));
-	m_LifeComponent->m_maxLife = { 100.f };
+	m_LifeComponent->maxLife = { 100.f };
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
@@ -65,9 +65,9 @@ void AProyectoVampiroCharacter::RestoreLife_Implementation(float amount)
 	this->m_LifeComponent->RestoreLife(amount);
 }
 
-void AProyectoVampiroCharacter::StartDamageOverTime_Implementation(float dps)
+void AProyectoVampiroCharacter::StartDamageOverTime_Implementation(float damage, float time)
 {
-	this->m_LifeComponent->StartDamageOverTime(dps);
+	this->m_LifeComponent->StartDamageOverTime(damage, time);
 }
 
 void AProyectoVampiroCharacter::StopDamageOverTime_Implementation()
@@ -75,6 +75,37 @@ void AProyectoVampiroCharacter::StopDamageOverTime_Implementation()
 	this->m_LifeComponent->StopDamageOverTime();
 }
 
+void AProyectoVampiroCharacter::AddExperience_Implementation(float xp)
+{
+	this->currentXP += xp;
+	if (this->currentXP >= this->neededXP) {
+		this->LevelUp();
+	}
+}
+
+void AProyectoVampiroCharacter::LevelUp_Implementation()
+{
+	if (this->currentLevel < this->maxLevel) 
+	{
+		this->currentLevel++;
+		UE_LOG(LogTemp, Warning, TEXT("Current Level: %f"), this->currentLevel);
+	}
+	else 
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Max Level Reached"));
+	}
+}
+
+void AProyectoVampiroCharacter::BeginPlay() 
+{
+	Super::BeginPlay();
+	this->m_LifeComponent->OnKillEntity.BindUObject(this, &AProyectoVampiroCharacter::KillPlayer);
+}
+
+void AProyectoVampiroCharacter::KillPlayer()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Muertisimo"));
+}
 
 //////////////////////////////////////////////////////////////////////////
 // Input

@@ -14,17 +14,28 @@ class AProyectoVampiroCharacter : public ACharacter, public ILifeManagerInterfac
 	GENERATED_BODY()
 
 		/** Camera boom positioning the camera behind the character */
-		UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class USpringArmComponent* CameraBoom;
 
 	/** Follow camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FollowCamera;
-	/** Life Component */
+
 
 public:
-	AProyectoVampiroCharacter();
+	//Levels
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		int currentLevel{};
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int maxLevel{};
+	//Experience
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float currentXP{};
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float neededXP{};
 
+	AProyectoVampiroCharacter();
+	//Life component
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		ULifeComponent* m_LifeComponent = nullptr;
 
@@ -37,18 +48,28 @@ public:
 	virtual void RestoreLife_Implementation(float amount) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-		void StartDamageOverTime(float dps);
-	virtual void StartDamageOverTime_Implementation(float dps) override;
+		void StartDamageOverTime(float damage, float time);
+	virtual void StartDamageOverTime_Implementation(float damage, float time) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void StopDamageOverTime();
 	virtual void StopDamageOverTime_Implementation() override;
+
+	//Leveling up
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void AddExperience(float xp);
+	virtual void AddExperience_Implementation(float xp);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+		void LevelUp();
+	virtual void LevelUp_Implementation();
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input)
 		float TurnRateGamepad;
 
 protected:
+
+	void BeginPlay() override;
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);
@@ -73,6 +94,9 @@ protected:
 
 	/** Handler for when a touch input stops. */
 	void TouchStopped(ETouchIndex::Type FingerIndex, FVector Location);
+
+	void KillPlayer();
+
 
 protected:
 	// APawn interface

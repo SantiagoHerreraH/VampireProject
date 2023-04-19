@@ -18,11 +18,13 @@ public:
 		DECLARE_DELEGATE(FKillEntity);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float m_maxLife{};
+		float maxLife{};
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		float m_currentLife{};
+		float currentLife{};
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		float m_dps{};
+		float damagePerTick{};
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		float timeBetweenTicks{};
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		bool isDamageOverTime{};
 
@@ -33,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Damage")
 		void RestoreLife(float amount);
 	UFUNCTION(BlueprintCallable, Category = "Damage")
-		void StartDamageOverTime(float dps);
+		void StartDamageOverTime(float damage, float time);
 	UFUNCTION(BlueprintCallable, Category = "Damage")
 		void StopDamageOverTime();
 

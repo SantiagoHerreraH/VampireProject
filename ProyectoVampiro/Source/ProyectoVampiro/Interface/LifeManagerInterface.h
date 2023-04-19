@@ -28,7 +28,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void RestoreLife(float amount);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-		void StartDamageOverTime(float dps);
+		void StartDamageOverTime(float damage, float time);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void StopDamageOverTime();
 };

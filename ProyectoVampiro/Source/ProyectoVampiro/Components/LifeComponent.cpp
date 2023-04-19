@@ -17,7 +17,7 @@ ULifeComponent::ULifeComponent()
 void ULifeComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	this->m_currentLife = this->m_maxLife;
+	this->currentLife = this->maxLife;
 	// ...
 
 }
@@ -34,27 +34,29 @@ void ULifeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void ULifeComponent::ReduceLife(float amount)
 {
-	this->m_currentLife -= amount;
-	UE_LOG(LogTemp, Warning, TEXT("Current life: %f"), this->m_currentLife);
-	if (this->m_currentLife <= 0.f) {
-		//OnKillEntity.Execute();
+	this->currentLife -= amount;
+	if (this->currentLife <= 0.f) {
+		this->currentLife = 0.f;
+		this->OnKillEntity.Execute();
 	}
+	UE_LOG(LogTemp, Warning, TEXT("Current life: %f"), this->currentLife);
 }
 
 void ULifeComponent::RestoreLife(float amount)
 {
-	this->m_currentLife += amount;
+	this->currentLife += amount;
 
-	if (this->m_currentLife > this->m_maxLife) {
-		this->m_currentLife = this->m_maxLife;
+	if (this->currentLife > this->maxLife) {
+		this->currentLife = this->maxLife;
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Current life: %f"), this->m_currentLife);
+	UE_LOG(LogTemp, Warning, TEXT("Current life: %f"), this->currentLife);
 }
 
-void ULifeComponent::StartDamageOverTime(float dps)
+void ULifeComponent::StartDamageOverTime(float damage, float time)
 {
-	this->m_dps = dps;
+	this->damagePerTick = damage;
+	this->timeBetweenTicks = time;
 	isDamageOverTime = true;
 }
 
