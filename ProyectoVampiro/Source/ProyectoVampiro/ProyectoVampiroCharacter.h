@@ -2,10 +2,12 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+// Project
 #include "ProyectoVampiro/Components/LifeComponent.h"
 #include "ProyectoVampiro/Interface/LifeManagerInterface.h"
+// Unreal
+#include "CoreMinimal.h"
+#include "GameFramework/Character.h"
 #include "ProyectoVampiroCharacter.generated.h"
 
 UCLASS(config = Game)
@@ -68,6 +70,8 @@ public:
 		float TurnRateGamepad;
 
 protected:
+	UPROPERTY(VisibleAnywhere)
+		class UWidgetComponent* LifeWidgetComponent;
 
 	void BeginPlay() override;
 
