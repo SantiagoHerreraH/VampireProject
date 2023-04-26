@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ProyectoVampiroCharacter.h"
+
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
@@ -8,6 +9,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "ProyectoVampiro/Widgets/LifeBar.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AProyectoVampiroCharacter
@@ -59,6 +61,16 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
+const float AProyectoVampiroCharacter::GetCurrentLife()
+{
+	return this->m_LifeComponent->currentLife;
+}
+
+const float AProyectoVampiroCharacter::GetMaxLife()
+{
+	return this->m_LifeComponent->maxLife;
+}
+
 void AProyectoVampiroCharacter::ReduceLife_Implementation(float amount)
 {
 	this->m_LifeComponent->ReduceLife(amount);
@@ -103,6 +115,11 @@ void AProyectoVampiroCharacter::LevelUp_Implementation()
 void AProyectoVampiroCharacter::BeginPlay() 
 {
 	Super::BeginPlay();
+
+	ULifeBar* LifeBar = Cast<ULifeBar>(LifeWidgetComponent->GetUserWidgetObject());
+	LifeBar->SetOwnerCharacter(this);
+	
+
 	this->m_LifeComponent->OnKillEntity.BindUObject(this, &AProyectoVampiroCharacter::KillPlayer);
 }
 

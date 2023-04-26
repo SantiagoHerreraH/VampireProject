@@ -41,6 +41,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		ULifeComponent* m_LifeComponent = nullptr;
 
+	const float GetCurrentLife();
+	const float GetMaxLife();
+
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void ReduceLife(float amount);
 	virtual void ReduceLife_Implementation(float amount) override;
