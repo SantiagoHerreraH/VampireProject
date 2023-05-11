@@ -17,9 +17,7 @@ void ABaseEnmy::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//ABaseEnemyController* cotr = Cast<ABaseEnemyController>( GetController());
-	//cotr->SetPlayer(playerToPursuit);
-	//cotr->BeginPlay();
+
 	
 }
 
@@ -36,5 +34,14 @@ void ABaseEnmy::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 }
+
+/*COSAS QUE HAY QUE HACER AL COPIARLO
+
+asignarle el controller
+poner una maya de navegacion
+asignarle el personaje
+meterle colision y la mesh al enemigo
+
+
 
 
