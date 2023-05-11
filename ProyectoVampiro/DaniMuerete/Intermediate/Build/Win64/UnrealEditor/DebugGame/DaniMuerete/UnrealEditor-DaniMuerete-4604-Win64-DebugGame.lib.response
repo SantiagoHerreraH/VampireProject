@@ -1,0 +1,21 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-DaniMuerete-4604-Win64-DebugGame.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\DaniMuereteEditor\DebugGame\Engine\SharedPCH.Engine.NonOptimized.ShadowErrors.h.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\BaseEnemyController.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\BaseEnmy.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\DaniMuerete.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\DaniMuereteCharacter.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\DaniMuereteGameMode.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\BaseEnemyController.gen.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\BaseEnmy.gen.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\DaniMuerete.init.gen.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\DaniMuereteCharacter.gen.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\DaniMuereteGameMode.gen.cpp.obj"
+"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\Default.rc2.res"
+/OUT:"C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-4604-Win64-DebugGame.lib"

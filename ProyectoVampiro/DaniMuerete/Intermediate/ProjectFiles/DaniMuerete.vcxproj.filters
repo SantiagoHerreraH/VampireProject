@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\DaniMuerete.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{F31BBDD1-B3E8-3BCC-9652-680E16935819}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\DaniMuerete.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\DaniMuereteEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultInput.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\DaniMuerete">
+      <UniqueIdentifier>{2A885B17-1FB2-395D-9B1D-1C3A078F703F}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\DaniMuerete\BaseEnemyController.cpp">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DaniMuerete\BaseEnemyController.h">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DaniMuerete\BaseEnmy.cpp">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DaniMuerete\BaseEnmy.h">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClInclude>
+    <None Include="..\..\Source\DaniMuerete\DaniMuerete.Build.cs">
+      <Filter>Source\DaniMuerete</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\DaniMuerete\DaniMuerete.cpp">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DaniMuerete\DaniMuerete.h">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DaniMuerete\DaniMuereteCharacter.cpp">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DaniMuerete\DaniMuereteCharacter.h">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\DaniMuerete\DaniMuereteGameMode.cpp">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\DaniMuerete\DaniMuereteGameMode.h">
+      <Filter>Source\DaniMuerete</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

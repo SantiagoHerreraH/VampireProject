@@ -1,0 +1,15 @@
+{
+    "Version": "1.1",
+    "Data": {
+        "Source": "c:\\users\\alumno\\documents\\unreal projects\\danimuerete\\source\\danimuerete\\baseenmy.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\alumno\\documents\\unreal projects\\danimuerete\\intermediate\\build\\win64\\danimuereteeditor\\debuggame\\engine\\sharedpch.engine.nonoptimized.shadowerrors.h.pch",
+        "Includes": [
+            "c:\\users\\alumno\\documents\\unreal projects\\danimuerete\\intermediate\\build\\win64\\unrealeditor\\debuggame\\danimuerete\\definitions.danimuerete.h",
+            "c:\\users\\alumno\\documents\\unreal projects\\danimuerete\\source\\danimuerete\\baseenmy.h",
+            "c:\\users\\alumno\\documents\\unreal projects\\danimuerete\\intermediate\\build\\win64\\unrealeditor\\inc\\danimuerete\\baseenmy.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

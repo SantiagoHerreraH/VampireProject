@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "DaniMuerete",
+			"Path": "C:\\Users\\Alumno\\Documents\\Unreal Projects\\DaniMuerete\\Source\\DaniMuerete.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "DaniMuereteEditor",
+			"Path": "C:\\Users\\Alumno\\Documents\\Unreal Projects\\DaniMuerete\\Source\\DaniMuereteEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

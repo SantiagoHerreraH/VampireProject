@@ -1,0 +1,25 @@
+﻿  Using bundled DotNet SDK
+  Log file: C:\Users\Alumno\AppData\Local\UnrealBuildTool\Log.txt
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Binaries\Win64\UnrealEditor-DaniMuerete-2995-Win64-DebugGame.dll
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Binaries\Win64\UnrealEditor-DaniMuerete-2995-Win64-DebugGame.pdb
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Binaries\Win64\UnrealEditor-DaniMuerete-5770-Win64-DebugGame.dll
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Binaries\Win64\UnrealEditor-DaniMuerete-5770-Win64-DebugGame.pdb
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Binaries\Win64\UnrealEditor-DaniMuerete-8463-Win64-DebugGame.dll
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Binaries\Win64\UnrealEditor-DaniMuerete-8463-Win64-DebugGame.pdb
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-2995-Win64-DebugGame.lib
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-5770-Win64-DebugGame.lib
+  Deleted hot-reload file: C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-8463-Win64-DebugGame.lib
+  Building DaniMuereteEditor...
+  Using Visual Studio 2019 14.29.30146 toolchain (C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133) and Windows 10.0.19041.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  [Adaptive Build] Excluded from DaniMuerete unity file: BaseEnemyController.cpp, BaseEnmy.cpp, DaniMuerete.cpp, DaniMuereteCharacter.cpp, DaniMuereteGameMode.cpp
+  Determining max actions to execute in parallel (8 physical cores, 16 logical cores)
+    Executing up to 8 processes, one per physical core
+  Building 4 actions with 4 processes...
+  [1/4] Compile BaseEnmy.cpp
+  [2/4] Link UnrealEditor-DaniMuerete-Win64-DebugGame.lib
+     Creando biblioteca C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-Win64-DebugGame.lib y objeto C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-Win64-DebugGame.exp
+  [3/4] Link UnrealEditor-DaniMuerete-Win64-DebugGame.dll
+     Creando biblioteca C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-Win64-DebugGame.suppressed.lib y objeto C:\Users\Alumno\Documents\Unreal Projects\DaniMuerete\Intermediate\Build\Win64\UnrealEditor\DebugGame\DaniMuerete\UnrealEditor-DaniMuerete-Win64-DebugGame.suppressed.exp
+  [4/4] WriteMetadata DaniMuereteEditor-Win64-DebugGame.target
+  Total time in Parallel executor: 2,46 seconds
+  Total execution time: 2,94 seconds
