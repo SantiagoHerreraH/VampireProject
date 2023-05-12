@@ -20,13 +20,3 @@ void UExperienceBar::SetExperienceBar(float CurrentXP, float MaxXP, int CurrentL
 		Level->SetText(FText::AsNumber(CurrentLevel));
 	}
 }
-
-void UExperienceBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
-{
-	Super::NativeTick(MyGeometry, InDeltaTime);
-
-	if (!OwnerCharacter.IsValid())
-		return;
-
-	//XPBar->SetPercent(OwnerCharacter->);
-}
