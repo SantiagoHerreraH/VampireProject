@@ -13,6 +13,7 @@ class AProyectoVampiroGameMode : public AGameModeBase
 
 public:
 	AProyectoVampiroGameMode();
+
 };
 
 
