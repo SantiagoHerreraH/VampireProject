@@ -33,8 +33,8 @@ public:
 	//Experience
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 		float currentXP{};
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-		float neededXP{};
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float maxXP{};
 
 	AProyectoVampiroCharacter();
 	//Life component
@@ -64,6 +64,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void AddExperience(float xp);
 	virtual void AddExperience_Implementation(float xp);
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void LevelUp();
 	virtual void LevelUp_Implementation();
@@ -76,7 +77,12 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 		class UWidgetComponent* LifeWidgetComponent;
 
-	void BeginPlay() override;
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<class UUserWidget> ExperienceBarClass;
+
+	class UExperienceBar* XPBar;
+	
+	virtual void BeginPlay() override;
 
 	/** Called for forwards/backward input */
 	void MoveForward(float Value);

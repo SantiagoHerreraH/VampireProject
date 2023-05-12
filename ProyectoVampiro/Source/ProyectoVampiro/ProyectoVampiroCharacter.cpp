@@ -1,15 +1,18 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "ProyectoVampiroCharacter.h"
+#include "ProyectoVampiro/Widgets/LifeBar.h"
+#include "ProyectoVampiro/Widgets/ExperienceBar.h"
 
 #include "Camera/CameraComponent.h"
+#include "Blueprint/UserWidget.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "Components/WidgetComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
-#include "ProyectoVampiro/Widgets/LifeBar.h"
+#include "Kismet/GameplayStatics.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AProyectoVampiroCharacter
@@ -50,15 +53,34 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	//Create life component.
+	//Create life component & widget.
 	m_LifeComponent = CreateDefaultSubobject<ULifeComponent>(TEXT("LifeComponent"));
 	m_LifeComponent->maxLife = { 100.f };
 
 	LifeWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("LifeBar"));
 	LifeWidgetComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 
-	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
-	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+	//Create experience widget
+	ExperienceBarClass=nullptr;
+	XPBar=nullptr;
+
+	
+}
+void AProyectoVampiroCharacter::BeginPlay() 
+{
+	Super::BeginPlay();
+
+	ULifeBar* LifeBar = Cast<ULifeBar>(LifeWidgetComponent->GetUserWidgetObject());
+	LifeBar->SetOwnerCharacter(this);
+	
+	this->m_LifeComponent->OnKillEntity.BindUObject(this, &AProyectoVampiroCharacter::KillPlayer);
+
+	if(IsLocallyControlled() && ExperienceBarClass)
+	{
+		XPBar = CreateWidget<UExperienceBar>(UGameplayStatics::GetPlayerController(GetWorld(), 0), ExperienceBarClass);
+		XPBar->AddToViewport();
+		XPBar->SetExperienceBar(currentXP,maxXP,currentLevel);
+	}
 }
 
 const float AProyectoVampiroCharacter::GetCurrentLife()
@@ -93,39 +115,34 @@ void AProyectoVampiroCharacter::StopDamageOverTime_Implementation()
 
 void AProyectoVampiroCharacter::AddExperience_Implementation(float xp)
 {
+	if(currentLevel==maxLevel)
+		return;
+	
 	this->currentXP += xp;
-	if (this->currentXP >= this->neededXP) {
+	if (this->currentXP >= this->maxXP) {
 		this->LevelUp();
 	}
+	XPBar->SetExperienceBar(currentXP,maxXP,currentLevel);
 }
 
 void AProyectoVampiroCharacter::LevelUp_Implementation()
 {
+	currentXP = 0.f;
+	maxXP+=maxXP*0.2f;
 	if (this->currentLevel < this->maxLevel) 
 	{
 		this->currentLevel++;
-		UE_LOG(LogTemp, Warning, TEXT("Current Level: %f"), this->currentLevel);
 	}
-	else 
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Max Level Reached"));
-	}
+
+	XPBar->SetExperienceBar(currentXP,maxXP,currentLevel);
 }
 
-void AProyectoVampiroCharacter::BeginPlay() 
-{
-	Super::BeginPlay();
-
-	ULifeBar* LifeBar = Cast<ULifeBar>(LifeWidgetComponent->GetUserWidgetObject());
-	LifeBar->SetOwnerCharacter(this);
-	
-
-	this->m_LifeComponent->OnKillEntity.BindUObject(this, &AProyectoVampiroCharacter::KillPlayer);
-}
 
 void AProyectoVampiroCharacter::KillPlayer()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Muertisimo"));
+	DisableInput(GetWorld()->GetFirstPlayerController());
+	GetMesh()->SetSimulatePhysics(true);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -144,10 +161,10 @@ void AProyectoVampiroCharacter::SetupPlayerInputComponent(class UInputComponent*
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
-	PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
+	/*PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("Turn Right / Left Gamepad", this, &AProyectoVampiroCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &AProyectoVampiroCharacter::LookUpAtRate);
+	PlayerInputComponent->BindAxis("Look Up / Down Gamepad", this, &AProyectoVampiroCharacter::LookUpAtRate);*/
 
 	// handle touch devices
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AProyectoVampiroCharacter::TouchStarted);

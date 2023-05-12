@@ -1,7 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ProyectoVampiro/Widgets/LifeBar.h"
+
 #include <Components/ProgressBar.h>
 
 void ULifeBar::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)

@@ -2,6 +2,9 @@
 
 #include "ProyectoVampiroGameMode.h"
 #include "ProyectoVampiroCharacter.h"
+#include "ProyectoVampiro/Widgets/ExperienceBar.h"
+
+#include "Blueprint/UserWidget.h"
 #include "UObject/ConstructorHelpers.h"
 
 AProyectoVampiroGameMode::AProyectoVampiroGameMode()
