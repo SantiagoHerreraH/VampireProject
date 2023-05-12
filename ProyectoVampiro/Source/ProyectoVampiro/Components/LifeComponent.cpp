@@ -2,6 +2,7 @@
 
 #include "ProyectoVampiro/Components/LifeComponent.h"
 
+
 // Sets default values for this component's properties
 ULifeComponent::ULifeComponent()
 {
@@ -12,14 +13,14 @@ ULifeComponent::ULifeComponent()
 	// ...
 }
 
-
 // Called when the game starts
 void ULifeComponent::BeginPlay()
 {
 	Super::BeginPlay();
+	//maxLife=_PlayerStats->maxLife;
 	this->currentLife = this->maxLife;
 	// ...
-
+	
 }
 
 
@@ -29,7 +30,9 @@ void ULifeComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	//maxLife=_PlayerStats->maxLife;
 }
+
 
 
 void ULifeComponent::ReduceLife(float amount)

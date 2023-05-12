@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "ProyectoVampiro/Components/PlayerStats.h"
+
 #include "CoreMinimal.h"
 #include "Engine/Engine.h"
 #include "Components/ActorComponent.h"
@@ -29,7 +31,7 @@ public:
 		bool isDamageOverTime{};
 
 	ULifeComponent();
-
+	
 	UFUNCTION(BlueprintCallable, Category = "Damage")
 		void ReduceLife(float amount);
 	UFUNCTION(BlueprintCallable, Category = "Damage")

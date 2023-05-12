@@ -4,6 +4,7 @@
 
 // Project
 #include "ProyectoVampiro/Components/LifeComponent.h"
+#include "ProyectoVampiro/Components/PlayerStats.h"
 #include "ProyectoVampiro/Interface/LifeManagerInterface.h"
 // Unreal
 #include "CoreMinimal.h"
@@ -41,8 +42,20 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 		ULifeComponent* m_LifeComponent = nullptr;
 
+	//Stats component
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPlayerStats* _PlayerStats = nullptr;
+
+	//Get Player Stats.
 	const float GetCurrentLife();
 	const float GetMaxLife();
+	const float GetLifeRestoredByItem();
+
+	const float GetXPGained();
+	const int GetMaxLevel();
+
+	const float GetPlayerSpeed();
+	const float GetPickUpRange();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void ReduceLife(float amount);
@@ -68,6 +81,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 		void LevelUp();
 	virtual void LevelUp_Implementation();
+	
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Input)

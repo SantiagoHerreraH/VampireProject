@@ -55,7 +55,7 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 
 	//Create life component & widget.
 	m_LifeComponent = CreateDefaultSubobject<ULifeComponent>(TEXT("LifeComponent"));
-	m_LifeComponent->maxLife = { 100.f };
+	m_LifeComponent->maxLife=100.f;
 
 	LifeWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("LifeBar"));
 	LifeWidgetComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
@@ -64,11 +64,16 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 	ExperienceBarClass=nullptr;
 	XPBar=nullptr;
 
+	//Create player stats component
+	_PlayerStats=CreateDefaultSubobject<UPlayerStats>(TEXT("PlayerStats"));
+
 	
 }
 void AProyectoVampiroCharacter::BeginPlay() 
 {
 	Super::BeginPlay();
+
+	m_LifeComponent->maxLife=_PlayerStats->maxLife;
 
 	ULifeBar* LifeBar = Cast<ULifeBar>(LifeWidgetComponent->GetUserWidgetObject());
 	LifeBar->SetOwnerCharacter(this);
@@ -83,14 +88,40 @@ void AProyectoVampiroCharacter::BeginPlay()
 	}
 }
 
+//Get Stats
+
 const float AProyectoVampiroCharacter::GetCurrentLife()
 {
 	return this->m_LifeComponent->currentLife;
 }
-
 const float AProyectoVampiroCharacter::GetMaxLife()
 {
 	return this->m_LifeComponent->maxLife;
+}
+
+const float AProyectoVampiroCharacter::GetLifeRestoredByItem()
+{
+	return this->_PlayerStats->lifeRestoredByItem;
+}
+
+const float AProyectoVampiroCharacter::GetXPGained()
+{
+	return this->_PlayerStats->xPGained;
+}
+
+const int AProyectoVampiroCharacter::GetMaxLevel()
+{
+	return this->_PlayerStats->maxLevel;
+}
+
+const float AProyectoVampiroCharacter::GetPlayerSpeed()
+{
+	return this->_PlayerStats->speed;
+}
+
+const float AProyectoVampiroCharacter::GetPickUpRange()
+{
+	return this->_PlayerStats->pickUpRange;
 }
 
 void AProyectoVampiroCharacter::ReduceLife_Implementation(float amount)
@@ -133,10 +164,11 @@ void AProyectoVampiroCharacter::LevelUp_Implementation()
 	{
 		this->currentLevel++;
 	}
-
 	XPBar->SetExperienceBar(currentXP,maxXP,currentLevel);
-}
 
+	_PlayerStats->LevelUpRandomStat();
+	m_LifeComponent->maxLife=_PlayerStats->maxLife;
+}
 
 void AProyectoVampiroCharacter::KillPlayer()
 {
