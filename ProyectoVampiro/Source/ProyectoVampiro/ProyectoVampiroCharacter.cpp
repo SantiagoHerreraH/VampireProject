@@ -3,6 +3,7 @@
 #include "ProyectoVampiroCharacter.h"
 #include "ProyectoVampiro/Widgets/LifeBar.h"
 #include "ProyectoVampiro/Widgets/ExperienceBar.h"
+#include "ProyectoVampiro/Components/ProjectileManagerComponent.h"
 
 #include "Camera/CameraComponent.h"
 #include "Blueprint/UserWidget.h"
@@ -52,6 +53,10 @@ AProyectoVampiroCharacter::AProyectoVampiroCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+
+	//Create Projectile Manager
+	MProjectileManager = CreateDefaultSubobject<UProjectileManagerComponent>(TEXT("MProjectileManager"));
+	MProjectileManager->RegisterComponent();
 
 	//Create life component & widget.
 	m_LifeComponent = CreateDefaultSubobject<ULifeComponent>(TEXT("LifeComponent"));
@@ -121,6 +126,7 @@ void AProyectoVampiroCharacter::AddExperience_Implementation(float xp)
 	this->currentXP += xp;
 	if (this->currentXP >= this->maxXP) {
 		this->LevelUp();
+		MProjectileManager->NextLevel(0);
 	}
 	XPBar->SetExperienceBar(currentXP,maxXP,currentLevel);
 }

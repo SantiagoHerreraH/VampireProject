@@ -23,6 +23,8 @@ class AProyectoVampiroCharacter : public ACharacter, public ILifeManagerInterfac
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 		class UCameraComponent* FollowCamera;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Projectile, meta = (AllowPrivateAccess = "true"))
+		class UProjectileManagerComponent* MProjectileManager;
 
 public:
 	//Levels
